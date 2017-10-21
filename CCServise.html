@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>长春</title>
+		<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">     	 
+    	<script type="text/javascript" src = "JQuery/jQuery.js"></script> 
+    	<script type="text/javascript" src = "bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    	<script src="SuperMap/libs/SuperMap.Include.js"></script>
+    	<script src="js/control.js"></script>
+    	<script src="js/layer.js"></script>
+    	<script src="js/query.js"></script>
+    	<script src="js/path.js"></script>
+    	<script src="js/mapLiangSuan.js"></script>
+    	<style type="text/css">
+			li:hover
+			{
+				background-color: gainsboro;
+				border: 1px solid black;
+			}
+		</style>
+		<script type="text/javascript">
+			var map,layer;
+			//var url="http://localhost:8090/iserver/services/map-changchun/rest/maps/长春市区图";			
+			var url="http://support.supermap.com.cn:8090/iserver/services/map-changchun/rest/maps/长春市区图"
+			//创建地图控件
+		    function init() 
+		    {
+		        map = new SuperMap.Map ("map");
+		        //创建分块动态REST图层，该图层显示iserver 8C 服务发布的地图,
+		        //其中"world"为图层名称，url图层的服务地址，{transparent: true}设置到url的可选参数
+		        layer = new SuperMap.Layer.TiledDynamicRESTLayer("Changchun", url, {transparent: true, cacheEnabled: true}, { maxResolution: "auto" });
+		        layer.events.on({"layerInitialized": addLayer});
+		    } 
+		</script>
+		<script type="text/javascript">
+			function getQueryInfo()
+			{
+				var queryInfo=document.getElementById("queryInfo_t");				
+				return queryInfo.value;
+			}
+		</script>
+		<script type="text/javascript">
+			
+			function alertinfo(this1)
+			{
+				//alert("hello"+this1);
+				var test=this1;
+			}
+		</script>
+	</head>
+	<body onload="init()">
+		<nav class = "navbar navbar-default" role = "navigation">  
+	        <div>  
+	            <form class="navbar-form navbar-left" role="search">  
+	                <div class="form-group">  
+	                    <input id="queryInfo_t" type="text" class="form-control" placeholder="查询景点，公园，医院等">  
+	                </div>  
+	                <button type="button" class="btn btn-default" onclick="queryBySQL()">查找</button>  
+	            </form> 
+	            <ul class="nav navbar-nav navbar-right">
+	            	<li class="dropdown" id="accountmenu">
+	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">路线<b class="caret"></b></a>
+	                    <ul class="dropdown-menu">
+	                        <li onclick="selectPoints()"><a href="#">选择景点</a></li>
+	                        <li onclick="findPath()"><a href="#">提交</a></li>
+	                    </ul>
+               		</li>
+	            	
+	                <li class="dropdown" id="accountmenu">
+	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">工具<b class="caret"></b></a>
+	                    <ul class="dropdown-menu">
+	                        <li onclick="distanceMeasure()"><a href="#">测距</a></li>
+	                        <li onclick="areaMeasure()"><a href="#">测面积</a></li>
+	                    </ul>
+               		</li>
+               		
+               		<li class="dropdown" id="accountmenu">
+	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">足迹<b class="caret"></b></a>
+	                    <ul class="dropdown-menu">
+	                        <li onclick="alertFangXiang()"><a href="#">查看足迹</a></li>
+	                        <li><a href="#">我的足迹</a></li>
+	                        <li><a href="#">分享足迹</a></li>
+	                    </ul>
+               		</li>
+               		<li><a href="#">登录/注销</a></li>
+	            </ul>  
+	        </div>  
+    	</nav>
+    	<div id="map" style="position:absolute;left:2px;right:0px;top: 53px; width:99.6%;height:89%;margin:0px;padding: 0px;">					
+		</div>
+	</body>
+</html>

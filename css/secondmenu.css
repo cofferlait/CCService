@@ -1,0 +1,10 @@
+.second_menu
+{
+	
+	display: none;
+		
+}
+.second_menu ul li:hover
+{
+	background-color: blue;
+}

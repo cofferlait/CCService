@@ -1,0 +1,40 @@
+.menu 
+{	
+	background-color: #0480BE;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	width: 100%;
+	height: 60px;
+}
+.menu ul
+{
+    list-style:none; /* 去掉ul前面的符号 */
+    margin: 0px; /* 与外界元素的距离为0 */
+    padding: 12px; /* 与内部元素的距离为0 */
+    width: auto; /* 宽度根据元素内容调整 */
+   font-size: 22px;
+}
+.menu >ul >li
+{
+	float: left;
+	padding: 2px;
+	border: 1px solid gray;
+}
+.menu >ul >li:hover
+{
+	/*
+	 * background-color: #003BB3;
+	 */
+	color: white;
+	border:2px solid black;
+}
+#query_t
+{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	width: 100px;
+	height: 19px;
+}
